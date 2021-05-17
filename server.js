@@ -24,7 +24,7 @@ app.get("/", function (req, res) {
   app.post("/api/notes", function (req, res) {
     fs.readFile(__dirname + "/db/db.json", 'utf8', function (error, notes) {
       if (error) {
-        return console.log(error)
+        return console.log(chalk.red)(error)
       }
       notes = JSON.parse(notes)
 
@@ -36,7 +36,7 @@ app.get("/", function (req, res) {
         if (error) {
           return error
         }
-        console.log(currentNote)
+        console.log(chalk.magenta)(currentNote)
         res.json(currentNote);
       })
     })
