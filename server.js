@@ -91,3 +91,8 @@ app.get("/", function (req, res) {
       })
     })
   })
+
+  // Starts the server to begin listening
+  app.listen(PORT, function () {
+    console.log(chalk.bold.bgCyan)("App listening on PORT " + PORT);
+  });
