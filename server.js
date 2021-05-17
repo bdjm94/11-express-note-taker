@@ -24,7 +24,7 @@ app.get("/", function (req, res) {
   app.post("/api/notes", function (req, res) {
     fs.readFile(__dirname + "/db/db.json", 'utf8', function (error, notes) {
       if (error) {
-        return console.log(chalk.red)(error)
+        return console.log(chalk.red(error))
       }
       notes = JSON.parse(notes)
 
@@ -36,7 +36,7 @@ app.get("/", function (req, res) {
         if (error) {
           return error
         }
-        console.log(chalk.magenta)(currentNote)
+        console.log(chalk.magenta(currentNote))
         res.json(currentNote);
       })
     })
@@ -45,19 +45,19 @@ app.get("/", function (req, res) {
   app.get("/api/notes", function (req, res) {
     fs.readFile(__dirname + "/db/db.json", 'utf8', function (error, data) {
       if (error) {
-        return console.log(chalk.red)(error)
+        return console.log(chalk.red(error))
       }
-      console.log(chalk.green)("Notes", data)
+      console.log(chalk.green("Notes", data))
       res.json(JSON.parse(data))
     })
   });
 
   app.delete("/api/notes/:id", function (req, res) {
     const noteId = JSON.parse(req.params.id)
-    console.log(chalk.magenta)(noteId)
+    console.log(chalk.magenta(noteId))
     fs.readFile(__dirname + "/db/db.json", 'utf8', function (error, notes) {
       if (error) {
-        return console.log(chalk.red)(error)
+        return console.log(chalk.red(error))
       }
       notes = JSON.parse(notes)
 
@@ -77,7 +77,7 @@ app.get("/", function (req, res) {
     console.log(noteId)
     fs.readFile(__dirname + "db/db.json", "utf8", function(error, notes) {
       if (error) {
-        return console.log(error)
+        return console.log(chalk.red(error))
       }
       notes.JSONparse(notes)
   
@@ -94,5 +94,5 @@ app.get("/", function (req, res) {
 
   // Starts the server to begin listening
   app.listen(PORT, function () {
-    console.log(chalk.bold.bgCyan)("App listening on PORT " + PORT);
+    console.log(chalk.bold.bgCyan("App listening on PORT " + PORT));
   });
