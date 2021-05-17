@@ -13,16 +13,16 @@ app.use(express.json());
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "/public/index.html"));
+    res.sendFile(path.join(__dirname, "/Develop/public/index.html"));
   });
   
   app.get("/notes", function (req, res) {
-    res.sendFile(path.join(__dirname, "/public/notes.html"));
+    res.sendFile(path.join(__dirname, "/Develop/public/notes.html"));
   
   });
 
   app.post("/api/notes", function (req, res) {
-    fs.readFile(__dirname + "/db/db.json", 'utf8', function (error, notes) {
+    fs.readFile(__dirname + "/Develop/db/db.json", 'utf8', function (error, notes) {
       if (error) {
         return console.log(chalk.red(error))
       }
@@ -32,7 +32,7 @@ app.get("/", function (req, res) {
       var createNote = { title: req.body.title, text: req.body.text, id: id }
       var currentNote = notes.concat(createNote)
 
-      fs.writeFile(__dirname + "/db/db.json", JSON.stringify(currentNote), function(error, data) {
+      fs.writeFile(__dirname + "/Develop/db/db.json", JSON.stringify(currentNote), function(error, data) {
         if (error) {
           return error
         }
@@ -43,7 +43,7 @@ app.get("/", function (req, res) {
   })
 
   app.get("/api/notes", function (req, res) {
-    fs.readFile(__dirname + "/db/db.json", 'utf8', function (error, data) {
+    fs.readFile(__dirname + "/Develop/db/db.json", 'utf8', function (error, data) {
       if (error) {
         return console.log(chalk.red(error))
       }
@@ -55,7 +55,7 @@ app.get("/", function (req, res) {
   app.delete("/api/notes/:id", function (req, res) {
     const noteId = JSON.parse(req.params.id)
     console.log(chalk.magenta(noteId))
-    fs.readFile(__dirname + "/db/db.json", 'utf8', function (error, notes) {
+    fs.readFile(__dirname + "/Develop/db/db.json", 'utf8', function (error, notes) {
       if (error) {
         return console.log(chalk.red(error))
       }
@@ -63,7 +63,7 @@ app.get("/", function (req, res) {
 
       notes = notes.filter(val => val.id !== noteId)
 
-      fs.writeFile(__dirname + "/db/db.json", JSON.stringify(notes), function(error, data) {
+      fs.writeFile(__dirname + "/Develop/db/db.json", JSON.stringify(notes), function(error, data) {
         if (error) {
           return error
         }
@@ -75,7 +75,7 @@ app.get("/", function (req, res) {
   app.put("/api/notes/:id", function(req, res) {
     const noteId = JSON.parse(req.params.id)
     console.log(noteId)
-    fs.readFile(__dirname + "db/db.json", "utf8", function(error, notes) {
+    fs.readFile(__dirname + "/Develop/db/db.json", "utf8", function(error, notes) {
       if (error) {
         return console.log(chalk.red(error))
       }
@@ -83,7 +83,7 @@ app.get("/", function (req, res) {
   
       notes = notes.filter(val => val.id !== noteId)
   
-      fs.writeFile(__dirname +"db/db.json", JSON.stringify(notes), function(error, data) {
+      fs.writeFile(__dirname +"/Develop/db/db.json", JSON.stringify(notes), function(error, data) {
         if (error) {
           return error
         }
