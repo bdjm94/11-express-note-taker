@@ -41,3 +41,13 @@ app.get("/", function (req, res) {
       })
     })
   })
+
+  app.get("/api/notes", function (req, res) {
+    fs.readFile(__dirname + "/db/db.json", 'utf8', function (error, data) {
+      if (error) {
+        return console.log(error)
+      }
+      console.log(chalk.green)("Notes", data)
+      res.json(JSON.parse(data))
+    })
+  });
