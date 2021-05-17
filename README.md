@@ -49,5 +49,5 @@
 
   | Note Taker in Use |
 |------------|
-  ![Working Note Taker](./assets/images/Working_Note_taker.gif)
+  ![Working Note Taker](./assets/images/Working_Note_Taker.gif)
 
