@@ -26,3 +26,17 @@ app.get("/", function (req, res) {
         return console.log(error)
       }
       notes = JSON.parse(notes)
+
+      var id = notes[notes.length - 1].id + 1
+      var createNote = { title: req.body.title, text: req.body.text, id: id }
+      var currentNote = notes.concat(createNote)
+
+      fs.writeFile(__dirname + "/db/db.json", JSON.stringify(currentNote), function(error, data) {
+        if (error) {
+          return error
+        }
+        console.log(currentNote)
+        res.json(currentNote);
+      })
+    })
+  })
