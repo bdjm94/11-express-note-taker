@@ -60,3 +60,14 @@ app.get("/", function (req, res) {
         return console.log(chalk.red)(error)
       }
       notes = JSON.parse(notes)
+
+      notes = notes.filter(val => val.id !== noteId)
+
+      fs.writeFile(__dirname + "/db/db.json", JSON.stringify(notes), function(error, data) {
+        if (error) {
+          return error
+        }
+        res.json(notes)
+      })
+    })
+  })
