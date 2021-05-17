@@ -45,9 +45,18 @@ app.get("/", function (req, res) {
   app.get("/api/notes", function (req, res) {
     fs.readFile(__dirname + "/db/db.json", 'utf8', function (error, data) {
       if (error) {
-        return console.log(error)
+        return console.log(chalk.red)(error)
       }
       console.log(chalk.green)("Notes", data)
       res.json(JSON.parse(data))
     })
   });
+
+  app.delete("/api/notes/:id", function (req, res) {
+    const noteId = JSON.parse(req.params.id)
+    console.log(chalk.magenta)(noteId)
+    fs.readFile(__dirname + "/db/db.json", 'utf8', function (error, notes) {
+      if (error) {
+        return console.log(chalk.red)(error)
+      }
+      notes = JSON.parse(notes)
